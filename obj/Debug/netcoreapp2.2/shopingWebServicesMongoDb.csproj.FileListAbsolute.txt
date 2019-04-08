@@ -1,0 +1,14 @@
+C:\workspace\dotnet\shopingWebServicesMongoDb\bin\Debug\netcoreapp2.2\shopingWebServicesMongoDb.deps.json
+C:\workspace\dotnet\shopingWebServicesMongoDb\bin\Debug\netcoreapp2.2\shopingWebServicesMongoDb.runtimeconfig.json
+C:\workspace\dotnet\shopingWebServicesMongoDb\bin\Debug\netcoreapp2.2\shopingWebServicesMongoDb.runtimeconfig.dev.json
+C:\workspace\dotnet\shopingWebServicesMongoDb\bin\Debug\netcoreapp2.2\shopingWebServicesMongoDb.dll
+C:\workspace\dotnet\shopingWebServicesMongoDb\bin\Debug\netcoreapp2.2\shopingWebServicesMongoDb.pdb
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.csprojAssemblyReference.cache
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.csproj.CoreCompileInputs.cache
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.RazorAssemblyInfo.cache
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.RazorAssemblyInfo.cs
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.AssemblyInfoInputs.cache
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.AssemblyInfo.cs
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.RazorTargetAssemblyInfo.cache
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.dll
+C:\workspace\dotnet\shopingWebServicesMongoDb\obj\Debug\netcoreapp2.2\shopingWebServicesMongoDb.pdb
