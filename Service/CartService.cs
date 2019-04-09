@@ -25,7 +25,7 @@ public class CartService : ICartService
     }
 
     public Cart Create(Cart cart)
-    {
+    {   
         _carts.InsertOne(cart);
         return cart;
     }
@@ -57,16 +57,53 @@ public class CartService : ICartService
                     .Filter.Eq(cart => cart.Id, id);
 
         var update = Builders<Cart>.Update
-                    .Push<Product>(p => p.Product, product);
+                    .Push<Product>(p => p.Product, product)
+                    .Set(cart => cart.Status, Status)
+                    .Set(cart => cart.modified_on, modofied_on);;
 
         _carts.FindOneAndUpdate(filter, update);
-         
-        var changeStatusCart = Builders<Cart>.Update
-            .Set(cart => cart.Status, Status)
-            .Set(cart => cart.modified_on, modofied_on);
-
-        _carts.FindOneAndUpdate(filter, changeStatusCart);
         
         return _carts.Find<Cart>(cart => cart.Id == id).FirstOrDefault();
+    }
+
+    public void NotEnoughInventory(string id, Product productIn)
+    {   
+        DateTime dt = DateTime.Now;
+        string modofied_on = dt.ToShortDateString();
+
+        var filter = Builders<Cart>
+                    .Filter.Eq(cart => cart.Id, id);
+        
+        var update = Builders<Cart>.Update
+                     .Set(cart => cart.modified_on, modofied_on)
+                     .Pull(cart => cart.Product, productIn);
+        
+        _carts.FindOneAndUpdate(filter, update);
+    }
+
+    public Cart RemoveFromCart(string id, Product product)
+    {
+        DateTime dt = DateTime.Now;
+        string modofied_on = dt.ToShortDateString();
+
+        var filter = Builders<Cart>
+                    .Filter.Eq(cart => cart.Id, id);
+
+        var update = Builders<Cart>.Update
+                    .Set(cart => cart.modified_on, modofied_on)
+                    .Pull(cart => cart.Product, product);
+        
+        var result = _carts.FindOneAndUpdate(filter, update);
+        /* 
+        if(result != null)
+        {   
+            Reserved reserved = new Reserved{
+                Id = id
+            };
+            ProductService ps = new ProductService();
+            ps.UpdateAfterDeleteFromCart(product, reserved);
+        }*/
+        
+        return result;
     }
 }

@@ -75,4 +75,10 @@ public class CartsController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut("removefromcart/{id:length(24)}")]
+    public ActionResult<Cart> RemoveFromCart(string id, Product product)
+    {
+        return _cartService.RemoveFromCart(id, product);
+    }
 }

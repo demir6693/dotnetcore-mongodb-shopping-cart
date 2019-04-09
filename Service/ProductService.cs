@@ -14,6 +14,8 @@ public class ProductService : IProductService
         _products = database.GetCollection<Product>("Products");
     }
 
+    public ProductService(){}
+
     public List<Product> Get()
     {
         return _products.Find(product => true).ToList();
@@ -25,7 +27,7 @@ public class ProductService : IProductService
     }
 
     public Product Create(Product product)
-    {
+    {   
         _products.InsertOne(product);
         return product;
     }
@@ -47,16 +49,29 @@ public class ProductService : IProductService
 
     public Product ReservedItems(string id, Reserved reserved)
     {
-        var filter = Builders<Product>.Filter
-            .Gte(product => product.Quantity, reserved.Quantity);
+        var filter = Builders<Product>.Filter.And(
+            Builders<Product>.Filter.Eq(product => product.Id, id),
+            Builders<Product>.Filter.Gte(product => product.Quantity, reserved.Quantity));
 
         var update = Builders<Product>.Update
             .Push<Reserved>(r => r.Reserved, reserved)
             .Inc(product => product.Quantity, -reserved.Quantity);
 
-
         _products.FindOneAndUpdate(filter, update);
 
         return _products.Find<Product>(product => product.Id == id).FirstOrDefault();        
     }
+
+    public void UpdateAfterDeleteFromCart(Product productIn, Reserved reserved)
+    {
+        var filter = Builders<Product>.Filter
+            .Eq(product => product.Id, productIn.Id);
+        
+        var update = Builders<Product>.Update
+            .Inc(product => product.Quantity, productIn.Quantity)
+            .Pull(product => product.Reserved, reserved);
+
+        _products.FindOneAndUpdate(filter, update);
+    }
+
 }

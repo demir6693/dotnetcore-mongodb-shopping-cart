@@ -13,6 +13,7 @@ public class Cart
     public string Status { get; set; }
 
     [BsonElement("Product")]
+    [BsonIgnoreIfNull]
     public List<Product> Product { get; set; }
 
     [BsonElement("modified_on")]

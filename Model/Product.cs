@@ -21,6 +21,7 @@ public class Product
     public decimal Price { get; set; }
 
     [BsonElement("Reserved")]
+    [BsonIgnoreIfNull]
     public List<Reserved> Reserved { get; set; }
 
 }

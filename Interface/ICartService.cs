@@ -9,4 +9,5 @@ public interface ICartService
     void Update(string id, Cart cartIn);
     void Remove(Cart cartIn);
     void Remove(string id);
+    Cart RemoveFromCart(string id, Product product);
 }
